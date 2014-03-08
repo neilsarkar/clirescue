@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/GoBootcamp/clirescue/trackerapi"
 	"github.com/codegangsta/cli"
+	"github.com/neilsarkar/clirescue/trackerCli"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 			Name:  "me",
 			Usage: "prints out Tracker's representation of your account",
 			Action: func(c *cli.Context) {
-				trackerapi.Me()
+				trackerCli.Me()
 			},
 		},
 	}

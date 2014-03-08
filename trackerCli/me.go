@@ -1,4 +1,4 @@
-package trackerapi
+package trackerCli
 
 import (
 	"encoding/json"
@@ -7,16 +7,13 @@ import (
 	"net/http"
 	"os"
 	u "os/user"
-
-	"github.com/GoBootcamp/clirescue/cmdutil"
-	"github.com/GoBootcamp/clirescue/user"
 )
 
 var (
-	URL          string     = "https://www.pivotaltracker.com/services/v5/me"
-	FileLocation string     = homeDir() + "/.tracker"
-	currentUser  *user.User = user.New()
-	Stdout       *os.File   = os.Stdout
+	URL          string = "https://www.pivotaltracker.com/services/v5/me"
+	FileLocation string = homeDir() + "/.tracker"
+	currentUser  *User
+	Stdout       *os.File = os.Stdout
 )
 
 func Me() {
@@ -50,13 +47,13 @@ func parse(body []byte) {
 
 func setCredentials() {
 	fmt.Fprint(Stdout, "Username: ")
-	var username = cmdutil.ReadLine()
-	cmdutil.Silence()
+	var username = ReadLine()
+	Silence()
 	fmt.Fprint(Stdout, "Password: ")
 
-	var password = cmdutil.ReadLine()
+	var password = ReadLine()
 	currentUser.Login(username, password)
-	cmdutil.Unsilence()
+	Unsilence()
 }
 
 func homeDir() string {

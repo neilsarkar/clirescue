@@ -1,4 +1,4 @@
-package user
+package trackerCli
 
 func New() *User {
 	return new(User)
